@@ -10,14 +10,21 @@ int triangle_number(int n){
 }
 
 int count_divisor(int n){
-    int count = 1;
+    int count = 0;
     if (n == 1) return 1;
     if(n == 2) return 2;
-    for(int i = 2;i <= sqrt(n); ++i){
+    int count2 = 0;
+    while (n % 2 == 0){
+        n /= 2;
+        ++count2;
+    }
+    
+    for(int i = 3;i <= sqrt(n); i += 2){
         if(n % i == 0 && i == n / i) ++count;
         if(n % i == 0 && i != n / i) count += 2;
     }
-    return (count + 1);
+    
+    return (count + 2) * ( count2 + 1 );
 }
 
 int main() {
